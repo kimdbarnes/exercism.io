@@ -1,11 +1,11 @@
 class Hamming
   def self.compute(first, second)
     differences = 0
-    first.chars.each_with_index do |first_char, index|
-      break if index >= second.length
-      differences += 1 if first_char != second[index]
+    shorter = first.length < second.length ? first : second
+    longer = shorter == first ? second : first
+    (0..shorter.length-1).each do |index|
+      differences += 1 if shorter[index] != longer[index]
     end
-
     differences
   end
 end
